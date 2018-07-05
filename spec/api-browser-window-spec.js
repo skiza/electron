@@ -457,6 +457,24 @@ describe('BrowserWindow module', () => {
       })
       w.setSize(size[0], size[1])
     })
+
+    it('is overriden by will-resize', (done) => {
+      if (!['darwin', 'win32'].includes(process.platform)) {
+        return
+      }
+
+      const size = [300, 400]
+      const overrideSize = [320, 410]
+      w.once('will-resize', (event, newSize, callback) => {
+        assertBoundsEqual(newSize, size)
+        callback(overrideSize)
+      })
+      w.once('resize', () => {
+        assertBoundsEqual(w.getSize(), overrideSize)
+        done()
+      })
+      w.setSize(size[0], size[1])
+    })
   })
 
   describe('BrowserWindow.setMinimum/MaximumSize(width, height)', () => {

@@ -233,6 +233,7 @@ class NativeWindow : public base::SupportsUserData,
   void NotifyWindowMinimize();
   void NotifyWindowRestore();
   void NotifyWindowMove();
+  void NotifyWindowWillResize(gfx::Rect* new_bounds);
   void NotifyWindowResize();
   void NotifyWindowMoved();
   void NotifyWindowScrollTouchBegin();

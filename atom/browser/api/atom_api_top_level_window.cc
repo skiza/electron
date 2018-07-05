@@ -194,6 +194,16 @@ void TopLevelWindow::OnWindowRestore() {
   Emit("restore");
 }
 
+void HandleWillResizeCallback(gfx::Rect* new_bounds,
+                              gfx::Rect overridden_bounds) {
+  *new_bounds = overridden_bounds;
+}
+
+void TopLevelWindow::OnWindowWillResize(gfx::Rect* new_bounds) {
+  Emit("will-resize", *new_bounds,
+       base::Bind(&HandleWillResizeCallback, new_bounds));
+}
+
 void TopLevelWindow::OnWindowResize() {
   Emit("resize");
 }

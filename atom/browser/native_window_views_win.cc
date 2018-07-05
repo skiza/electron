@@ -187,6 +187,13 @@ bool NativeWindowViews::PreHandleMSG(UINT message,
       if (HIWORD(w_param) == THBN_CLICKED)
         return taskbar_host_.HandleThumbarButtonEvent(LOWORD(w_param));
       return false;
+    case WM_SIZING: {
+      auto* msg_rect = *static_cast<RECT*>(l_param);
+      gfx::Rect rect(*msg_rect);
+      NotifyWindowWillResize(&rect);
+      *msg_rect = rect.toRECT();
+      return false;
+    }
     case WM_SIZE: {
       // Handle window state change.
       HandleSizeEvent(w_param, l_param);

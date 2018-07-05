@@ -112,6 +112,12 @@
                extraHeightPlusFrame);
   }
 
+  {
+    gfx::Rect bounds(sender.frame.origin, newSize);
+    shell_->NotifyWindowWillResize(&bounds);
+    newSize = bounds.size().ToCGSize();
+  }
+
   return newSize;
 }
 

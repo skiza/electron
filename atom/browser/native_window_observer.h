@@ -16,6 +16,10 @@
 #include <windows.h>
 #endif
 
+namespace gfx {
+class Size;
+}
+
 namespace atom {
 
 class NativeWindowObserver {
@@ -63,6 +67,7 @@ class NativeWindowObserver {
   virtual void OnWindowUnmaximize() {}
   virtual void OnWindowMinimize() {}
   virtual void OnWindowRestore() {}
+  virtual void OnWindowWillResize(gfx::Rect* new_bounds) {}
   virtual void OnWindowResize() {}
   virtual void OnWindowMove() {}
   virtual void OnWindowMoved() {}

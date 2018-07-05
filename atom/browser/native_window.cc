@@ -454,6 +454,11 @@ void NativeWindow::NotifyWindowRestore() {
     observer.OnWindowRestore();
 }
 
+void NativeWindow::NotifyWindowWillResize(gfx::Rect* new_bounds) {
+  for (NativeWindowObserver& observer : observers_)
+    observer.OnWindowWillResize(new_bounds);
+}
+
 void NativeWindow::NotifyWindowResize() {
   for (NativeWindowObserver& observer : observers_)
     observer.OnWindowResize();
