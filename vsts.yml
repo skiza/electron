@@ -77,7 +77,7 @@ steps:
     export MESSAGE="Build failed for *<$BUILD_URL|$BUILD_DEFINITIONNAME>* nightly build."
     curl -g -H "Content-Type: application/json" -X POST \
     -d "{\"text\": \"$MESSAGE\", \"attachments\": [{\"color\": \"#FC5C3C\",\"title\": \"$BUILD_DEFINITIONNAME nightly build results\",\"title_link\": \"$BUILD_URL\"}]}" $(slack_webhook)
-  name: Post Slack Notification on Failure
+  name: Post_Slack_Notification_on_Failure
   condition: failed()
 
 - bash: |
@@ -85,7 +85,7 @@ steps:
     export MESSAGE="Build succeeded for *<$BUILD_URL|$BUILD_DEFINITIONNAME>* nightly build."
     curl -g -H "Content-Type: application/json" -X POST \
     -d "{\"text\": \"$MESSAGE\", \"attachments\": [{\"color\": \"#FC5C3C\",\"title\": \"$BUILD_DEFINITIONNAME nightly build results\",\"title_link\": \"$BUILD_URL\"}]}" $(slack_webhook)
-  name: Post Slack Notification on Success
+  name: Post_Slack_Notification_on_Success
   condition: succeeded()
 
 - task: PublishBuildArtifacts@1
